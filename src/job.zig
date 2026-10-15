@@ -25,8 +25,7 @@ pub fn validateJobType(comptime T: type) void {
     }
 
     const func = execute_info.@"fn";
-
-    if (func.params.len != 1) {
+    if (func.param_attrs.len != 1) {
         @compileError("`execute` on `" ++ @typeName(T) ++ "` must take exactly one parameter (self), got " ++ std.fmt.comptimePrint("{d}", .{func.params.len}));
     }
 }

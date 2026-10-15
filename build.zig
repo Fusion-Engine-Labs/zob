@@ -50,8 +50,6 @@ pub fn build(b: *std.Build) void {
 
     const bench_step = b.step("bench", "Run performance benchmarks");
     const run_bench = b.addRunArtifact(benchmark);
-    if (b.args) |args| {
-        run_bench.addArgs(args);
-    }
+    run_bench.addPassthruArgs();
     bench_step.dependOn(&run_bench.step);
 }
